@@ -13,11 +13,13 @@ function App() {
     <ThemeProvider>
       <GlobalStyles />
       <Navbar />
-      <Hero />
-      <About />
-      <Projects />
-      <Skills />
-      <Contact />
+      <main>
+        <Hero />
+        <About />
+        <Projects />
+        <Skills />
+        <Contact />
+      </main>
       <Footer />
     </ThemeProvider>
   );

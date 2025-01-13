@@ -5,7 +5,7 @@ import { FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
 
 const ContactSection = styled.section`
   padding: 5rem 2rem;
-  background: ${props => props.isDarkMode ? 'var(--bg-dark)' : 'var(--bg-light)'};
+  background: ${({ theme }) => theme.background};
 `;
 
 const Container = styled.div`
@@ -15,14 +15,15 @@ const Container = styled.div`
 
 const SectionTitle = styled.h2`
   font-size: clamp(2rem, 4vw, 2.5rem);
-  color: ${props => props.isDarkMode ? 'var(--primary-dark)' : 'var(--primary-light)'};
+  color: #4F46E5;
   text-align: center;
   margin-bottom: 1rem;
+  font-weight: 700;
 `;
 
 const Subtitle = styled.p`
   text-align: center;
-  color: ${props => props.isDarkMode ? '#94a3b8' : '#64748b'};
+  color: ${({ theme }) => theme.textSecondary};
   margin-bottom: 3rem;
 `;
 
@@ -50,162 +51,136 @@ const FormGroup = styled.div`
 `;
 
 const Label = styled.label`
-  color: ${props => props.isDarkMode ? '#94a3b8' : '#64748b'};
+  color: ${({ theme }) => theme.textSecondary};
   font-size: 0.9rem;
 `;
 
 const Input = styled.input`
-  padding: 0.75rem;
+  padding: 0.8rem;
   border-radius: 8px;
-  border: 1px solid ${props => props.isDarkMode ? '#2d3748' : '#e2e8f0'};
-  background: ${props => props.isDarkMode ? '#1e293b' : 'white'};
-  color: ${props => props.isDarkMode ? 'white' : 'black'};
-
+  border: 1px solid #4F46E5;
+  background: ${({ theme }) => theme.cardBg};
+  color: ${({ theme }) => theme.text};
+  font-size: 1rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  
   &:focus {
-    outline: 2px solid ${props => props.isDarkMode ? 'var(--primary-dark)' : 'var(--primary-light)'};
+    outline: none;
+    border-color: #4F46E5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
   }
 `;
 
 const TextArea = styled.textarea`
-  padding: 0.75rem;
+  padding: 0.8rem;
   border-radius: 8px;
-  border: 1px solid ${props => props.isDarkMode ? '#2d3748' : '#e2e8f0'};
-  background: ${props => props.isDarkMode ? '#1e293b' : 'white'};
-  color: ${props => props.isDarkMode ? 'white' : 'black'};
+  border: 1px solid #4F46E5;
+  background: ${({ theme }) => theme.cardBg};
+  color: ${({ theme }) => theme.text};
+  font-size: 1rem;
   min-height: 150px;
-  resize: vertical;
-
+  resize: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  
   &:focus {
-    outline: 2px solid ${props => props.isDarkMode ? 'var(--primary-dark)' : 'var(--primary-light)'};
+    outline: none;
+    border-color: #4F46E5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
   }
 `;
 
 const SubmitButton = styled(motion.button)`
   padding: 1rem 2rem;
-  background: ${props => props.isDarkMode ? 'var(--primary-dark)' : 'var(--primary-light)'};
-  color: white;
   border: none;
   border-radius: 8px;
+  background: #4F46E5;
+  color: white;
+  font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  width: fit-content;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
 `;
 
-const ContactInfo = styled(motion.div)`
+const ContactInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
 `;
 
-const ContactCard = styled(motion.div)`
+const ContactItem = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 1.5rem;
-  background: ${props => props.isDarkMode ? '#1e293b' : 'white'};
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-`;
+  color: ${({ theme }) => theme.text};
 
-const IconWrapper = styled.div`
-  font-size: 1.5rem;
-  color: ${props => props.isDarkMode ? 'var(--primary-dark)' : 'var(--primary-light)'};
-`;
-
-const ContactDetails = styled.div`
-  h3 {
-    color: ${props => props.isDarkMode ? 'white' : 'black'};
-    margin-bottom: 0.25rem;
-  }
-
-  p {
-    color: ${props => props.isDarkMode ? '#94a3b8' : '#64748b'};
-    font-size: 0.9rem;
+  svg {
+    font-size: 1.5rem;
+    color: #4F46E5;
   }
 `;
 
 const Contact = () => {
-  const isDarkMode = false; // Replace with useTheme() hook
   const [ref, inView] = useInView({
-    threshold: 0.1,
+    threshold: 0.3,
     triggerOnce: true,
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Add form submission logic here
-  };
-
   return (
-    <ContactSection id="contact" isDarkMode={isDarkMode}>
+    <ContactSection id="contact" ref={ref}>
       <Container>
-        <SectionTitle isDarkMode={isDarkMode}>Get In Touch</SectionTitle>
-        <Subtitle isDarkMode={isDarkMode}>
-          Feel free to reach out for collaborations or just a friendly hello
-        </Subtitle>
-        <ContactGrid ref={ref}>
+        <SectionTitle>Get In Touch</SectionTitle>
+        <Subtitle>Feel free to reach out to me for any questions or opportunities!</Subtitle>
+        <ContactGrid>
           <ContactForm
-            onSubmit={handleSubmit}
             initial={{ opacity: 0, x: -50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.5 }}
           >
             <FormGroup>
-              <Label isDarkMode={isDarkMode}>Name</Label>
-              <Input type="text" required isDarkMode={isDarkMode} />
+              <Label>Name</Label>
+              <Input type="text" placeholder="Your name" />
             </FormGroup>
             <FormGroup>
-              <Label isDarkMode={isDarkMode}>Email</Label>
-              <Input type="email" required isDarkMode={isDarkMode} />
+              <Label>Email</Label>
+              <Input type="email" placeholder="Your email" />
             </FormGroup>
             <FormGroup>
-              <Label isDarkMode={isDarkMode}>Message</Label>
-              <TextArea required isDarkMode={isDarkMode} />
+              <Label>Message</Label>
+              <TextArea placeholder="Your message" />
             </FormGroup>
             <SubmitButton
-              type="submit"
-              isDarkMode={isDarkMode}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
               Send Message
             </SubmitButton>
           </ContactForm>
-
           <ContactInfo>
-            {[
-              {
-                icon: FiMail,
-                title: 'Email',
-                details: 'hello@example.com'
-              },
-              {
-                icon: FiPhone,
-                title: 'Phone',
-                details: '+1 (234) 567-8900'
-              },
-              {
-                icon: FiMapPin,
-                title: 'Location',
-                details: 'San Francisco, CA'
-              }
-            ].map((item, index) => (
-              <ContactCard
-                key={index}
-                isDarkMode={isDarkMode}
-                initial={{ opacity: 0, x: 50 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: index * 0.2, duration: 0.5 }}
-              >
-                <IconWrapper isDarkMode={isDarkMode}>
-                  <item.icon />
-                </IconWrapper>
-                <ContactDetails isDarkMode={isDarkMode}>
-                  <h3>{item.title}</h3>
-                  <p>{item.details}</p>
-                </ContactDetails>
-              </ContactCard>
-            ))}
+            <ContactItem>
+              <FiMail />
+              <div>
+                <h4>Email</h4>
+                <p>example@email.com</p>
+              </div>
+            </ContactItem>
+            <ContactItem>
+              <FiPhone />
+              <div>
+                <h4>Phone</h4>
+                <p>+1 234 567 8900</p>
+              </div>
+            </ContactItem>
+            <ContactItem>
+              <FiMapPin />
+              <div>
+                <h4>Location</h4>
+                <p>New York, USA</p>
+              </div>
+            </ContactItem>
           </ContactInfo>
         </ContactGrid>
       </Container>

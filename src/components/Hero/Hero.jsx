@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FiGithub, FiLinkedin, FiTwitter } from 'react-icons/fi';
+import { FiGithub, FiLinkedin } from 'react-icons/fi';
+import { RiTwitterXLine } from 'react-icons/ri';
 import { useTheme } from '../../context/ThemeContext';
 import profile from "../../assets/my_img.jpg"
 
@@ -17,7 +18,6 @@ const HeroCard = styled(motion.div)`
   gap: 3rem;
   padding: 3rem;
   border-radius: 24px;
-  background: ${({ theme }) => theme.cardBg};
   
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -26,14 +26,18 @@ const HeroCard = styled(motion.div)`
 `;
 
 const ImageWrapper = styled(motion.div)`
+  position: relative;
   border-radius: 20px;
-  overflow: hidden;
+  overflow: visible;
   max-height: 400px;
   
   img {
+    position: relative;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 20px;
+    z-index: 2;
   }
 `;
 
@@ -53,7 +57,7 @@ const Greeting = styled.span`
 
 const MainTitle = styled.h1`
   font-size: 3rem;
-  color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.text};
   font-weight: 700;
   margin-bottom: 0.5rem;
 `;
@@ -129,14 +133,10 @@ const Hero = () => {
           animate="visible"
           variants={staggerContainer}
         >
-          <ImageWrapper
-            variants={fadeInUp}
-          >
+          <ImageWrapper variants={fadeInUp}>
             <img src={profile} alt="Muyideen" />
           </ImageWrapper>
-          <HeroContent
-            variants={staggerContainer}
-          >
+          <HeroContent variants={staggerContainer}>
             <motion.div variants={staggerContainer}>
               <Greeting variants={fadeInUp}>Hey there! 👋</Greeting>
               <MainTitle variants={fadeInUp}>
@@ -165,7 +165,7 @@ const Hero = () => {
                 target="_blank"
                 whileHover={{ y: -3 }}
               >
-                <FiTwitter />
+                <RiTwitterXLine />
               </SocialIcon>
             </SocialLinks>
           </HeroContent>

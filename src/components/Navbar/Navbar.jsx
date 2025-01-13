@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiMenu, FiX } from 'react-icons/fi';
+import { FiMenu, FiX, FiMoon, FiSun } from 'react-icons/fi';
 import { useTheme } from '../../context/ThemeContext';
 
 const NavContainer = styled(motion.nav)`
@@ -80,9 +80,26 @@ const MenuButton = styled(motion.button)`
   }
 `;
 
+const ThemeToggle = styled(motion.button)`
+  background: none;
+  border: none;
+  color: ${({ theme }) => theme.text};
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: 8px;
+  
+  &:hover {
+    background: ${({ theme }) => theme.glassBg};
+  }
+`;
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
+  const { isDarkMode, toggleTheme } = useTheme();
 
   const menuVariants = {
     hidden: { opacity: 0, y: -20 },
@@ -114,13 +131,22 @@ const Navbar = () => {
           <NavLink href="#skills">Skills</NavLink>
           <NavLink href="#contact">Contact</NavLink>
         </NavLinks>
-        <MenuButton
-          onClick={() => setIsOpen(!isOpen)}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          {isOpen ? <FiX /> : <FiMenu />}
-        </MenuButton>
+        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+          <ThemeToggle
+            onClick={toggleTheme}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            {isDarkMode ? <FiSun /> : <FiMoon />}
+          </ThemeToggle>
+          <MenuButton
+            onClick={() => setIsOpen(!isOpen)}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            {isOpen ? <FiX /> : <FiMenu />}
+          </MenuButton>
+        </div>
       </NavContent>
       <AnimatePresence>
         {isOpen && (

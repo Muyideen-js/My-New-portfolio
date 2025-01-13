@@ -9,6 +9,12 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
   body {
     font-family: 'Poppins', sans-serif;
     background: ${({ theme }) => theme.background};
@@ -17,23 +23,20 @@ export const GlobalStyles = createGlobalStyle`
     overflow-x: hidden;
   }
 
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: ${({ theme }) => theme.gradient};
-    opacity: 0.05;
-    z-index: -1;
+  #root {
+    display: flex;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1;
   }
 
   .glass {
     background: ${({ theme }) => theme.glassBg};
     backdrop-filter: blur(8px);
     border: 1px solid ${({ theme }) => theme.border};
-    box-shadow: ${({ theme }) => theme.glassShadow};
+    box-shadow: ${({ theme }) => theme.shadow};
   }
 
   .container {
