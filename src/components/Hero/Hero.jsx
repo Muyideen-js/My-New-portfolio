@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FiGithub, FiLinkedin } from 'react-icons/fi';
+import { FiGithub, FiLinkedin, FiDownload } from 'react-icons/fi';
 import { RiTwitterXLine } from 'react-icons/ri';
 import { useTheme } from '../../context/ThemeContext';
 import profile from "../../assets/my_img.jpg"
@@ -122,6 +122,29 @@ const staggerContainer = {
   }
 };
 
+const ResumeButton = styled(motion.a)`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  background: #4F46E5;
+  color: white;
+  border-radius: 8px;
+  font-weight: 500;
+  text-decoration: none;
+  margin-top: 1rem;
+  border: none;
+  cursor: pointer;
+  
+  svg {
+    font-size: 1.2rem;
+  }
+
+  &:hover {
+    background: #4338CA;
+  }
+`;
+
 const Hero = () => {
   const { theme } = useTheme();
 
@@ -140,10 +163,19 @@ const Hero = () => {
             <motion.div variants={staggerContainer}>
               <Greeting variants={fadeInUp}>Hey there! 👋</Greeting>
               <MainTitle variants={fadeInUp}>
-                I'm Muyideen.Jsx
+                I'm Muyideen.Jsx  
               </MainTitle>
               <Role variants={fadeInUp}>Full Stack Developer</Role>
               <SubTitle variants={fadeInUp}>Building amazing web experiences</SubTitle>
+              <ResumeButton
+                href="/path-to-your-resume.pdf"
+                download
+                variants={fadeInUp}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <FiDownload /> Download Resume
+              </ResumeButton>
             </motion.div>
             <SocialLinks variants={fadeInUp}>
               <SocialIcon 

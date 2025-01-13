@@ -164,21 +164,21 @@ const Contact = () => {
               <FiMail />
               <div>
                 <h4>Email</h4>
-                <p>example@email.com</p>
+                <p>yusufabolaji2007@gmail.com</p>
               </div>
             </ContactItem>
             <ContactItem>
               <FiPhone />
               <div>
                 <h4>Phone</h4>
-                <p>+1 234 567 8900</p>
+                <p>+2348156564849</p>
               </div>
             </ContactItem>
             <ContactItem>
               <FiMapPin />
               <div>
                 <h4>Location</h4>
-                <p>New York, USA</p>
+                <p>Lagos, Nigeria</p>
               </div>
             </ContactItem>
           </ContactInfo>
