@@ -3,6 +3,9 @@ import { motion } from 'framer-motion';
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
 import { useInView } from 'react-intersection-observer';
 import { useTheme } from '../../context/ThemeContext';
+import audiowayImg from '../../assets/audioway.png';
+import project2Img from '../../assets/Sc.png';
+import project3Img from '../../assets/TWW.png';
 
 const ProjectsSection = styled.section`
   position: relative;
@@ -59,17 +62,20 @@ const ProjectContent = styled.div`
 
 const ProjectTitle = styled.h3`
   font-size: 1.25rem;
+  color: ${({ theme }) => theme.text};
   margin-bottom: 0.5rem;
-  background: ${({ theme }) => theme.gradient};
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+  z-index: 1;
+  position: relative;
+  color: ${({ theme }) => theme.primary};
 `;
 
 const ProjectDescription = styled.p`
   color: ${({ theme }) => theme.textSecondary};
-  font-size: 0.9rem;
-  line-height: 1.6;
+  font-size: 0.85rem;
   margin-bottom: 1rem;
+  line-height: 1.4;
+  font-style: italic;
 `;
 
 const TechStack = styled.div`
@@ -119,26 +125,26 @@ const SectionTitle = styled.h2`
 
 const projectsData = [
   {
-    title: "E-Commerce Platform",
-    description: "A full-stack e-commerce platform with user authentication, product management, and payment integration.",
-    image: "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80",
-    tech: ["React", "Node.js", "MongoDB", "Stripe"],
-    github: "https://github.com",
-    live: "https://demo.com"
+    title: "Audioway - Music Streaming",
+    description: "A modern music streaming app with playlist creation, real-time playback, and user authentication. Built for optimal user experience.",
+    image: audiowayImg,
+    tech: ["React", "Node.js", "MongoDB", "Redux"],
+    github: "https://github.com/yourusername/audioway",
+    live: "https://audioway.demo.com"
   },
   {
-    title: "Task Management App",
-    description: "A collaborative task management application with real-time updates and team features.",
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80",
+    title: "Social Connect",
+    description: "A social media platform with real-time messaging, post sharing, and multimedia content support. Built with modern web technologies.",
+    image: project2Img,
     tech: ["React", "Firebase", "Material-UI", "Redux"],
     github: "https://github.com",
     live: "https://demo.com"
   },
   {
-    title: "Social Media Dashboard",
-    description: "Analytics dashboard for social media metrics with data visualization.",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80",
-    tech: ["Vue.js", "D3.js", "Express", "PostgreSQL"],
+    title: "AI Chat Assistant",
+    description: "An intelligent chatbot platform with multiple AI models, real-time conversation, and multi-language support.",
+    image: project3Img,
+    tech: ["React", "Node.js", "OpenAI API", "Socket.io"],
     github: "https://github.com",
     live: "https://demo.com"
   }
