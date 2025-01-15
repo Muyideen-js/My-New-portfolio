@@ -168,7 +168,7 @@ const Hero = () => {
               <Role variants={fadeInUp}>Full Stack Developer</Role>
               <SubTitle variants={fadeInUp}>Building amazing web experiences</SubTitle>
               <ResumeButton
-                href="/path-to-your-resume.pdf"
+                href=""
                 download
                 variants={fadeInUp}
                 whileHover={{ scale: 1.05 }}
